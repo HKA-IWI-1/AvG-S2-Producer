@@ -4,13 +4,9 @@ import de.hka_iwi_1.avg_s2_producer.entity.Share;
 import de.hka_iwi_1.avg_s2_producer.entity.StockMarket;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
