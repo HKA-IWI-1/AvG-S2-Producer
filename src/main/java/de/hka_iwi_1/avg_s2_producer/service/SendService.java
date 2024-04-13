@@ -14,7 +14,10 @@ public class SendService {
     @Value("${jms.SendPricesTest}")
     String jmsQueue;
 
-    private void SendPrices(String message) {
+    public void SendPrices(String message) {
+
+        // TODO: Message ersetzen durch Aktien aus Repository
+
         jmsTemplate.convertAndSend(jmsQueue, message);
     }
 
