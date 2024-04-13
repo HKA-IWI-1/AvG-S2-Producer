@@ -23,8 +23,6 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 @Slf4j
 public class Controller {
 
-    private final StockMarketRepository repo;
-
     // z.B. http://localhost:8080/test/someString
     @GetMapping(
             path = "{content}"
