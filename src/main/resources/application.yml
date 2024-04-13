@@ -37,6 +37,8 @@ logging:
   threshold:
     console: info
     file: info
+jms:
+  SendPricesTest: "SendPricesTest"
 ---
 # --------------------------------------------------------
 # P r o f i l e   " d e v "
