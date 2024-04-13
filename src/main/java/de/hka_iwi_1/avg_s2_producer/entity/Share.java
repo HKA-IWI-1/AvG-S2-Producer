@@ -1,5 +1,6 @@
 package de.hka_iwi_1.avg_s2_producer.entity;
 
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +9,7 @@ import lombok.ToString;
 import java.math.BigDecimal;
 import java.util.Collection;
 
+@Builder
 @Getter
 @Setter
 @ToString
