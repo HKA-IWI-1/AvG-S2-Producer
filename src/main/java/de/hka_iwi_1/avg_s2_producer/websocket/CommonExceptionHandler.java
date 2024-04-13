@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 - present Florian Sauer
+ * Copyright (c) 2023-2024 - present Florian Sauer
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
  * documentation files (the “Software”), to deal in the Software without restriction, including without limitation the
@@ -17,34 +17,33 @@
  *
  */
 
-package de.hka_iwi_1.avg_s2_producer.rest_controller;
+package de.hka_iwi_1.avg_s2_producer.websocket;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-import static org.springframework.http.ResponseEntity.ok;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 /**
- * Controller for accepting GET requests to parse the iCal file.
+ * Handler for generic exceptions.
  */
-@RestController
-@RequestMapping("/test")
-@RequiredArgsConstructor
+@ControllerAdvice
 @Slf4j
-public class Controller {
+class CommonExceptionHandler {
 
-    // z.B. http://localhost:8080/test/someString
-    @GetMapping(
-            path = "{content}"
-            , produces = "application/json"
-    )
-    public ResponseEntity<String> getTest(
-            @PathVariable final String content
-    ) {
-        log.debug("getTest content={}, ", content);
-        return ok("{ content:\"" + content + "\",}");
+    @ExceptionHandler
+    @ResponseStatus(NOT_FOUND)
+    void onNotFound(final NotFoundException ex) {
+        log.debug("onNotFound: {}", ex.getMessage());
     }
+
+// todo: pfade ohne controller behandeln
+//    @ExceptionHandler(value = Exception.class)
+//    @ResponseStatus(NOT_FOUND)
+//    void onException(final Exception ex) {
+//        log.debug("onException: {}", ex.getMessage());
+//    }
 
 }

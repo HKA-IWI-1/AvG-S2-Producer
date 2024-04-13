@@ -17,4 +17,4 @@
  *
  */
 
-package de.hka_iwi_1.avg_s2_producer.rest_controller;
+package de.hka_iwi_1.avg_s2_producer.websocket;
