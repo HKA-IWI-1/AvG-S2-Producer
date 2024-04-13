@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-public class ReceiverService {
+public class ReceiveService {
 }
