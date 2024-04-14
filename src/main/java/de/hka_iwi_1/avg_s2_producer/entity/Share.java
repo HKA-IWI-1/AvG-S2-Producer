@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 
@@ -14,7 +15,7 @@ import java.util.Collection;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Share {
+public class Share implements Serializable {
 
     // Regex: ^\b[A-NP-Z0-9]{6}\b$
     private String wkn;
