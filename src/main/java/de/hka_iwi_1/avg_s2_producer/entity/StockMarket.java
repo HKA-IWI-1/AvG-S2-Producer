@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,7 +15,7 @@ import java.util.UUID;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class StockMarket {
+public class StockMarket implements Serializable {
 
     private UUID id;
 
