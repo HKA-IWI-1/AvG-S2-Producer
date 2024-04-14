@@ -15,15 +15,11 @@ Password and username can be set in artemis.env (default: user _artemis_ and pas
 
 The web management console can be opened at http://localhost:8161.
 
-### You will need the following queues / topics:
+### You will need the following addresses. Each address needs a queue with the same name:
 
-- `stocks.updates.Stuttgart` Multicast
-- `stocks.updates.Frankfurt` Multicast
-- `stocks.newOrder.Stuttgart` Anycast
-- `stocks.newOrder.Frankfurt` Anycast
-- `stocks.c1.orderStatus.Stuttgart` Anycast
-- `stocks.c1.orderStatus.Frankfurt` Anycast
-- `stocks.c2.orderStatus.Stuttgart` Anycast
-- `stocks.c2.orderStatus.Frankfurt` Anycast
-
-It should look something like [this](./extras/doc/assets/queues.png).
+- `stocks.updates.Stuttgart` # multicast
+- `stocks.updates.Frankfurt` # multicast
+- `stocks.newOrder.Stuttgart` # anycast
+- `stocks.newOrder.Frankfurt` # anycast
+- `stocks.c1.orderStatus.Stuttgart`"` # anycast
+- `stocks.c1.orderStatus.Frankfurt` # anycast
