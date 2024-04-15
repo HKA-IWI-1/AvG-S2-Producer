@@ -8,7 +8,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
+import java.util.List;
 
 @Builder
 @Getter
@@ -22,6 +22,6 @@ public class Share implements Serializable {
 
     private int availableShares;
 
-    private Collection<BigDecimal> priceHistory;
+    private List<BigDecimal> priceHistory;
 
 }

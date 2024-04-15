@@ -15,6 +15,4 @@ public class ReceiveService {
         log.info("receiveMessage: {}", message);
     }
 
-
-
 }

@@ -12,6 +12,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -43,13 +44,24 @@ public class SendService {
         jmsTemplate.convertAndSend(jmsQueue, jsonMessage);
     }
 
-    @Scheduled(initialDelay = 15000, fixedRate = 10000)
+    @Scheduled(initialDelay = 500, fixedRate = 500)
     public void scheduledPrices() throws JsonProcessingException {
         Collection<StockMarket> stockMarkets = repo.findAll();
 
         if (stockMarkets.isEmpty()) {
             throw new NotFoundException("Error trying to retrieve data");
         }
+
+        stockMarkets.forEach(
+                stockMarket -> stockMarket.getShares().forEach(
+                        share -> {
+                            var priceHistory = share.getPriceHistory();
+                            var addition = 20 + Math.random() * 40;
+                            priceHistory.removeLast();
+                            priceHistory.addFirst(new BigDecimal(addition));
+                        }
+                )
+        );
 
         String jsonMessage = objectMapper.writeValueAsString(stockMarkets);
 

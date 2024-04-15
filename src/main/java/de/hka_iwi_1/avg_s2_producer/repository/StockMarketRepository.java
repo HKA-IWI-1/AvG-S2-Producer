@@ -4,10 +4,10 @@ import de.hka_iwi_1.avg_s2_producer.entity.StockMarket;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+
 import static de.hka_iwi_1.avg_s2_producer.repository.DB.STOCK_MARKET;
 import static java.util.Collections.emptyList;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
