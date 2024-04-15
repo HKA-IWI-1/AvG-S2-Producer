@@ -2,6 +2,7 @@ package de.hka_iwi_1.avg_s2_producer.repository;
 
 import de.hka_iwi_1.avg_s2_producer.entity.Share;
 import de.hka_iwi_1.avg_s2_producer.entity.StockMarket;
+import de.hka_iwi_1.avg_s2_producer.service.RandomStockPriceGenerator;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -13,6 +14,7 @@ import java.util.stream.Stream;
 public class DB {
 
 static final List<StockMarket> STOCK_MARKET;
+    private static final RandomStockPriceGenerator randomStockPriceGenerator = new RandomStockPriceGenerator();
 
 static {
     STOCK_MARKET = Stream.of(
@@ -23,7 +25,7 @@ static {
                             Share.builder()
                                     .availableShares(100)
                                     // TODO: Preise generieren lassen
-                                    .priceHistory(Arrays.asList(new BigDecimal("124.03"), new BigDecimal("123.99")))
+                                    .priceHistory()
                                     .wkn("123456")
                                     .build()
                     ).collect(Collectors.toList()))
