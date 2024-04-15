@@ -10,9 +10,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReceiveService {
 
-    @JmsListener(destination = "${jms.SendPricesTest}")
+    @JmsListener(destination = "${jms.stocks.updates}")
     public void receiveMessage(String message) {
         log.info("receiveMessage: {}", message);
     }
+
+
 
 }

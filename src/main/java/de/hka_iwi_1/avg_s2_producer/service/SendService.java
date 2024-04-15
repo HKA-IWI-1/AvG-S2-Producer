@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -25,11 +26,11 @@ public class SendService {
     private final ObjectMapper objectMapper;
 
 
-    @Value("${jms.SendPricesTest}")
+    @Value("${jms.stocks.updates}")
     String jmsQueue;
 
     public void sendPrices(Map<String, List<String>> suchkriterien) throws JsonProcessingException {
-        Collection<StockMarket> stockMarkets = repo.find(suchkriterien); // Annahme: repo ist dein Repository
+        Collection<StockMarket> stockMarkets = repo.find(suchkriterien);
 
         if (stockMarkets.isEmpty()) {
             throw new NotFoundException(suchkriterien.toString());
@@ -42,4 +43,17 @@ public class SendService {
         jmsTemplate.convertAndSend(jmsQueue, jsonMessage);
     }
 
+    @Scheduled(initialDelay = 15000, fixedRate = 10000)
+    public void scheduledPrices() throws JsonProcessingException {
+        Collection<StockMarket> stockMarkets = repo.findAll();
+
+        if (stockMarkets.isEmpty()) {
+            throw new NotFoundException("Error trying to retrieve data");
+        }
+
+        String jsonMessage = objectMapper.writeValueAsString(stockMarkets);
+
+        jmsTemplate.convertAndSend(jmsQueue, jsonMessage);
+        log.info("sentMessage");
+    }
 }

@@ -25,8 +25,21 @@ logging:
   threshold:
     console: info
     file: info
+---
+# --------------------------------------------------------
+# P r o f i l e   " j m s "
+# --------------------------------------------------------
 jms:
   SendPricesTest: "SendPricesTest"
+  stocks:
+    updates: "stocks.updates"
+    newOrder:
+      Stuttgart: "stocks.newOrder.Stuttgart"
+      Frankfurt: "stocks.newOrder.Frankfurt"
+    c1:
+      orderStatus:
+        Stuttgart: "stocks.c1.orderStatus.Stuttgart"
+        Frankfurt: "stocks.c1.orderStatus.Frankfurt"
 ---
 # --------------------------------------------------------
 # P r o f i l e   " d e v "
