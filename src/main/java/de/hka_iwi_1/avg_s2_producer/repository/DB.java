@@ -22,9 +22,8 @@ static {
                     .shares(Stream.of(
                             Share.builder()
                                     .availableShares(100)
-                                    .price(new BigDecimal("124.09"))
                                     // TODO: Preise generieren lassen
-                                    .prices24hrs(Arrays.asList(new BigDecimal("124.03"), new BigDecimal("123.99")))
+                                    .priceHistory(Arrays.asList(new BigDecimal("124.03"), new BigDecimal("123.99")))
                                     .wkn("123456")
                                     .build()
                     ).collect(Collectors.toList()))
@@ -35,9 +34,8 @@ static {
                     .shares(Stream.of(
                             Share.builder()
                                     .availableShares(200)
-                                    .price(new BigDecimal("384.83"))
                                     // TODO: Preise generieren lassen
-                                    .prices24hrs(Arrays.asList(new BigDecimal("384.85"), new BigDecimal("384.95")))
+                                    .priceHistory(Arrays.asList(new BigDecimal("384.85"), new BigDecimal("384.95")))
                                     .wkn("234567")
                                     .build()
                     ).collect(Collectors.toList()))
