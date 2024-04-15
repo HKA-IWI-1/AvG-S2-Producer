@@ -17,8 +17,9 @@ The web management console can be opened at http://localhost:8161.
 
 ### You will need the following addresses. Each address needs a queue with the same name:
 
-- `stocks.updates.Stuttgart` # multicast
-- `stocks.updates.Frankfurt` # multicast
+- `stocks.updates` # multicast
+~~- `stocks.updates.Stuttgart` # multicast
+~~- `stocks.updates.Frankfurt` # multicast~~~~
 - `stocks.newOrder.Stuttgart` # anycast
 - `stocks.newOrder.Frankfurt` # anycast
 - `stocks.c1.orderStatus.Stuttgart`"` # anycast
