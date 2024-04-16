@@ -15,36 +15,23 @@ public class RandomStockPriceGenerator {
     private BigDecimal newPrice;
 
     private BigDecimal generateRandomPrice(BigDecimal price) {
+
         Random random = new Random();
-
-        double trend = random.nextGaussian() * 5; // Standardabweichung von 5
-        price = price.add(BigDecimal.valueOf(trend));
-
-        // Mindestwert von 0; falls nicht 0 setzung
-        if (price.compareTo(BigDecimal.ZERO) < 0) {
-            price = BigDecimal.ZERO;
-        }
-
-        return price;
-
-        /* Vorschlag für nen Pricegenerator der immer kleine Werte ändert aber nicht in nem Bereich festbleibt
-        Double decimal = 20.0;
         short addOrSubtract;
-        double roundedNumber;
-        while(true) {
-            if (random.nextBoolean()){
-                System.out.println("positiv");
+
+        if (random.nextBoolean()) {
             addOrSubtract = 1;
-            }else{
-                addOrSubtract = -1;
-                System.out.println("negativ");
-            }
-            decimal += (random.nextDouble(1,5) * addOrSubtract);
-            if(decimal <= 0.0)
-                decimal = random.nextDouble(0,1);
-            roundedNumber = Math.round(decimal * 100) / 100.0;
-            System.out.println(roundedNumber);
-        }*/
+        } else {
+            addOrSubtract = -1;
+        }
+        double trend = (random.nextDouble(1, 5) * addOrSubtract);
+
+        price = price.add(BigDecimal.valueOf(trend));
+        if (price.compareTo(BigDecimal.ZERO) < 0) {
+            trend = random.nextDouble(0, 1);
+            price = price.add(BigDecimal.valueOf(trend));
+        }
+        return price;
     }
 
     // Alle 10 Sekunden ausführen (10.000)
