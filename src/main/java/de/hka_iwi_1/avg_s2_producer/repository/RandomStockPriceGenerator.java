@@ -1,13 +1,11 @@
 package de.hka_iwi_1.avg_s2_producer.repository;
 
-import de.hka_iwi_1.avg_s2_producer.entity.Share;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import static de.hka_iwi_1.avg_s2_producer.repository.DB.STOCK_MARKET;
 
@@ -18,6 +16,7 @@ public class RandomStockPriceGenerator {
 
     private BigDecimal generateRandomPrice(BigDecimal price) {
         Random random = new Random();
+
         double trend = random.nextGaussian() * 5; // Standardabweichung von 5
         price = price.add(BigDecimal.valueOf(trend));
 
@@ -27,6 +26,25 @@ public class RandomStockPriceGenerator {
         }
 
         return price;
+
+        /* Vorschlag für nen Pricegenerator der immer kleine Werte ändert aber nicht in nem Bereich festbleibt
+        Double decimal = 20.0;
+        short addOrSubtract;
+        double roundedNumber;
+        while(true) {
+            if (random.nextBoolean()){
+                System.out.println("positiv");
+            addOrSubtract = 1;
+            }else{
+                addOrSubtract = -1;
+                System.out.println("negativ");
+            }
+            decimal += (random.nextDouble(1,5) * addOrSubtract);
+            if(decimal <= 0.0)
+                decimal = random.nextDouble(0,1);
+            roundedNumber = Math.round(decimal * 100) / 100.0;
+            System.out.println(roundedNumber);
+        }*/
     }
 
     // Alle 10 Sekunden ausführen (10.000)
