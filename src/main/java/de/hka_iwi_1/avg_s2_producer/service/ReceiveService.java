@@ -35,11 +35,11 @@ public class ReceiveService {
 
     @JmsListener(destination = "${jms.stocks.newOrder.Frankfurt}")
     public void receiveOrderFrankfurt(String orderString) throws JsonProcessingException {
-        var orderxd = mapper.readValue(orderString, OrderWrapper.class);
+        var orderWrapper = mapper.readValue(orderString, OrderWrapper.class);
         byte sellOrBuy;
 
-        AbstractOrder order = orderxd.getBuyOrder() != null ? orderxd.getBuyOrder() : orderxd.getSellOrder();
-        if(order == orderxd.getBuyOrder())
+        AbstractOrder order = orderWrapper.getBuyOrder() != null ? orderWrapper.getBuyOrder() : orderWrapper.getSellOrder();
+        if(order == orderWrapper.getBuyOrder())
             sellOrBuy = -1;
         else
             sellOrBuy = 1;
@@ -51,12 +51,15 @@ public class ReceiveService {
                 .filter(share -> share.getWkn().equals(order.getWkn()))
                 .toList();
         Share share = shareList.getFirst();
-        /*if(share.getAvailableShares()-order.getAmount() < 0){
-            throw new Exception();
-        } optional*/
-        share.setAvailableShares(share.getAvailableShares() + (order.getAmount()*sellOrBuy));
 
-        order.setStatus(OrderStatusType.SUCCESS);
+        if(share.getAvailableShares()-order.getAmount() < 0 && orderWrapper.getBuyOrder() != null){
+            order.setStatus(OrderStatusType.ERROR);
+        }
+        else{
+            share.setAvailableShares(share.getAvailableShares() + (order.getAmount()*sellOrBuy));
+            order.setStatus(OrderStatusType.SUCCESS);
+
+        }
         String jsonMessage = mapper.writeValueAsString(order);
         if (order.getClientId() == 1){
             jmsTemplate.convertAndSend(c1QueueFrankfurt, jsonMessage);
@@ -64,22 +67,22 @@ public class ReceiveService {
 
 
 
-        /*if (orderxd.getBuyOrder() != null) {
+        /*if (orderWrapper.getBuyOrder() != null) {
             Collection<StockMarket> stockMarkets = repository.findAll();
             stockMarkets.forEach(stockMarket -> {
                 if ("Frankfurt".equals(stockMarket.getName()))
                     stockMarket.getShares()
                             .forEach(share -> {
 
-                                share.setAvailableShares(share.getAvailableShares() - orderxd.getBuyOrder().getAmount());
+                                share.setAvailableShares(share.getAvailableShares() - orderWrapper.getBuyOrder().getAmount());
 
                             });
             });
 
-            orderxd.getBuyOrder().setStatusType(OrderStatusType.SUCCESS);
-            String jsonMessage = mapper.writeValueAsString(orderxd);
+            orderWrapper.getBuyOrder().setStatusType(OrderStatusType.SUCCESS);
+            String jsonMessage = mapper.writeValueAsString(orderWrapper);
 
-            if(orderxd.getBuyOrder().getClientId() == 1){
+            if(orderWrapper.getBuyOrder().getClientId() == 1){
                 jmsTemplate.convertAndSend(c1QueueFrankfurt, jsonMessage);
             }
 
