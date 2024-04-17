@@ -20,11 +20,14 @@ import java.util.List;
 @Service
 @Component
 public class ReceiveService {
+
     private final ObjectMapper mapper;
     private final StockMarketRepository repository;
     private final JmsTemplate jmsTemplate;
+
     @Value("${jms.stocks.c1.orderStatus.Stuttgart}")
     String c1QueueStuttgart;
+
     @Value("${jms.stocks.c1.orderStatus.Frankfurt}")
     String c1QueueFrankfurt;
     @Value("${jms.stocks.c2.orderStatus.Stuttgart}")
@@ -95,6 +98,16 @@ public class ReceiveService {
     @JmsListener(destination = "${jms.stocks.newOrder.Stuttgart}")
     public void receiveOrderStuttgart(String orderString) throws JsonProcessingException {
 
+    }
+
+    private String statusQueueBuilder(String queue, int clientId) {
+        StringBuilder newQueue = new StringBuilder("stocks.");
+        newQueue.append(clientId);
+        newQueue.append(".orderStatus.");
+        int index = queue.lastIndexOf(".") + 1;
+        newQueue.append(queue.substring(index));
+
+        return newQueue.toString();
     }
 
 }
