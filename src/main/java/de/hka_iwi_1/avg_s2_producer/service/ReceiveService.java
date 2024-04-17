@@ -27,6 +27,10 @@ public class ReceiveService {
     String c1QueueStuttgart;
     @Value("${jms.stocks.c1.orderStatus.Frankfurt}")
     String c1QueueFrankfurt;
+    @Value("${jms.stocks.c2.orderStatus.Stuttgart}")
+    String c2QueueStuttgart;
+    @Value("${jms.stocks.c2.orderStatus.Frankfurt}")
+    String c2QueueFrankfurt;
     //todo: alles beenden
 
     @JmsListener(destination = "${jms.stocks.newOrder.Frankfurt}")

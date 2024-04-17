@@ -40,6 +40,10 @@ jms:
       orderStatus:
         Stuttgart: "stocks.c1.orderStatus.Stuttgart"
         Frankfurt: "stocks.c1.orderStatus.Frankfurt"
+    c2:
+      orderStatus:
+        Stuttgart: "stocks.c2.orderStatus.Stuttgart"
+        Frankfurt: "stocks.c2.orderStatus.Frankfurt"
 ---
 # --------------------------------------------------------
 # P r o f i l e   " d e v "

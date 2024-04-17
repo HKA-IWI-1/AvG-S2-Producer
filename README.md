@@ -24,3 +24,5 @@ The web management console can be opened at http://localhost:8161.
 - `stocks.newOrder.Frankfurt` # anycast
 - `stocks.c1.orderStatus.Stuttgart`"` # anycast
 - `stocks.c1.orderStatus.Frankfurt` # anycast
+- `stocks.c2.orderStatus.Stuttgart`"` # anycast
+- `stocks.c2.orderStatus.Frankfurt` # anycast
