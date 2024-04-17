@@ -21,7 +21,6 @@ public class DB {
                         .shares(Stream.of(
                                 Share.builder()
                                         .availableShares(100)
-                                        // TODO: Preise generieren lassen
                                         .priceHistory(Stream.of(
                                                         new BigDecimal("124.03"),
                                                         new BigDecimal("24.03"),
@@ -82,6 +81,69 @@ public class DB {
                                                 ).collect(Collectors.toList())
                                         )
                                         .wkn("123456")
+                                        .build(),
+                                Share.builder()
+                                        .availableShares(200)
+                                        .priceHistory(Stream.of(
+                                                        new BigDecimal("144.03"),
+                                                        new BigDecimal("24.03"),
+                                                        new BigDecimal("124.03"),
+                                                        new BigDecimal("24.03"),
+                                                        new BigDecimal("13.03"),
+                                                        new BigDecimal("134.03"),
+                                                        new BigDecimal("20.03"),
+                                                        new BigDecimal("34.03"),
+                                                        new BigDecimal("54.03"),
+                                                        new BigDecimal("84.03"),
+                                                        new BigDecimal("19.03"),
+                                                        new BigDecimal("30.03"),
+                                                        new BigDecimal("14.03"),
+                                                        new BigDecimal("134.03"),
+                                                        new BigDecimal("84.03"),
+                                                        new BigDecimal("34.03"),
+                                                        new BigDecimal("74.03"),
+                                                        new BigDecimal("64.03"),
+                                                        new BigDecimal("19.03"),
+                                                        new BigDecimal("124.03"),
+                                                        new BigDecimal("24.03"),
+                                                        new BigDecimal("124.03"),
+                                                        new BigDecimal("21.03"),
+                                                        new BigDecimal("14.03"),
+                                                        new BigDecimal("96.03"),
+                                                        new BigDecimal("110.03"),
+                                                        new BigDecimal("70.03"),
+                                                        new BigDecimal("12.03"),
+                                                        new BigDecimal("83.03"),
+                                                        new BigDecimal("26.03"),
+                                                        new BigDecimal("90.89"),
+                                                        new BigDecimal("96.03"),
+                                                        new BigDecimal("150.03"),
+                                                        new BigDecimal("69.03"),
+                                                        new BigDecimal("75.03"),
+                                                        new BigDecimal("10.03"),
+                                                        new BigDecimal("5.03"),
+                                                        new BigDecimal("96.03"),
+                                                        new BigDecimal("17.03"),
+                                                        new BigDecimal("70.03"),
+                                                        new BigDecimal("83.03"),
+                                                        new BigDecimal("24.03"),
+                                                        new BigDecimal("124.03"),
+                                                        new BigDecimal("24.03"),
+                                                        new BigDecimal("14.03"),
+                                                        new BigDecimal("134.03"),
+                                                        new BigDecimal("84.03"),
+                                                        new BigDecimal("74.03"),
+                                                        new BigDecimal("54.03"),
+                                                        new BigDecimal("84.03"),
+                                                        new BigDecimal("19.03"),
+                                                        new BigDecimal("14.03"),
+                                                        new BigDecimal("14.03"),
+                                                        new BigDecimal("144.03"),
+                                                        new BigDecimal("84.03"),
+                                                        new BigDecimal("34.03")
+                                                ).collect(Collectors.toList())
+                                        )
+                                        .wkn("111111")
                                         .build()
                         ).collect(Collectors.toList()))
                         .build(),
@@ -91,7 +153,6 @@ public class DB {
                         .shares(Stream.of(
                                 Share.builder()
                                         .availableShares(200)
-                                        // TODO: Preise generieren lassen
                                         .priceHistory(Stream.of(
                                                         new BigDecimal("90.89"),
                                                         new BigDecimal("96.03"),
@@ -161,6 +222,78 @@ public class DB {
                                                 ).collect(Collectors.toList())
                                         )
                                         .wkn("234567")
+                                        .build(),
+                                Share.builder()
+                                        .availableShares(200)
+                                        .priceHistory(Stream.of(
+                                                        new BigDecimal("90.89"),
+                                                        new BigDecimal("96.03"),
+                                                        new BigDecimal("15.03"),
+                                                        new BigDecimal("99.03"),
+                                                        new BigDecimal("75.03"),
+                                                        new BigDecimal("10.03"),
+                                                        new BigDecimal("96.03"),
+                                                        new BigDecimal("17.03"),
+                                                        new BigDecimal("70.03"),
+                                                        new BigDecimal("22.03"),
+                                                        new BigDecimal("83.03"),
+                                                        new BigDecimal("26.03"),
+                                                        new BigDecimal("40.89"),
+                                                        new BigDecimal("96.03"),
+                                                        new BigDecimal("15.03"),
+                                                        new BigDecimal("69.03"),
+                                                        new BigDecimal("75.03"),
+                                                        new BigDecimal("100.03"),
+                                                        new BigDecimal("80.03"),
+                                                        new BigDecimal("96.03"),
+                                                        new BigDecimal("17.03"),
+                                                        new BigDecimal("70.03"),
+                                                        new BigDecimal("83.03"),
+                                                        new BigDecimal("26.03"),
+                                                        new BigDecimal("110.89"),
+                                                        new BigDecimal("96.03"),
+                                                        new BigDecimal("15.03"),
+                                                        new BigDecimal("69.03"),
+                                                        new BigDecimal("75.03"),
+                                                        new BigDecimal("10.03"),
+                                                        new BigDecimal("96.03"),
+                                                        new BigDecimal("17.03"),
+                                                        new BigDecimal("79.03"),
+                                                        new BigDecimal("12.03"),
+                                                        new BigDecimal("83.03"),
+                                                        new BigDecimal("26.03"),
+                                                        new BigDecimal("90.89"),
+                                                        new BigDecimal("96.03"),
+                                                        new BigDecimal("34.03"),
+                                                        new BigDecimal("69.03"),
+                                                        new BigDecimal("75.03"),
+                                                        new BigDecimal("10.03"),
+                                                        new BigDecimal("10.03"),
+                                                        new BigDecimal("96.03"),
+                                                        new BigDecimal("17.03"),
+                                                        new BigDecimal("70.03"),
+                                                        new BigDecimal("83.03"),
+                                                        new BigDecimal("90.89"),
+                                                        new BigDecimal("126.03"),
+                                                        new BigDecimal("99.03"),
+                                                        new BigDecimal("69.03"),
+                                                        new BigDecimal("75.03"),
+                                                        new BigDecimal("10.03"),
+                                                        new BigDecimal("96.03"),
+                                                        new BigDecimal("17.03"),
+                                                        new BigDecimal("70.03"),
+                                                        new BigDecimal("12.03"),
+                                                        new BigDecimal("83.03"),
+                                                        new BigDecimal("26.03"),
+                                                        new BigDecimal("90.89"),
+                                                        new BigDecimal("96.03"),
+                                                        new BigDecimal("48.03"),
+                                                        new BigDecimal("69.03"),
+                                                        new BigDecimal("75.03"),
+                                                        new BigDecimal("10.03")
+                                                ).collect(Collectors.toList())
+                                        )
+                                        .wkn("222222")
                                         .build()
                         ).collect(Collectors.toList()))
                         .build()
