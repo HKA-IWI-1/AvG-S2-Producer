@@ -37,8 +37,8 @@ public class ReceiveService {
 
     @Value("${jms.stocks.c2.orderStatus.Frankfurt}")
     String c2QueueFrankfurt;
-    //todo: alles beenden
 
+    @JmsListener(destination = "${jms.stocks.newOrder.Frankfurt}")
     @JmsListener(destination = "${jms.stocks.newOrder.Frankfurt}")
     public void receiveOrder(String orderString, @Header("JMSDestination") String JMSDestination) throws JsonProcessingException {
         var orderWrapper = mapper.readValue(orderString, OrderWrapper.class);
@@ -67,44 +67,11 @@ public class ReceiveService {
         else{
             share.setAvailableShares(share.getAvailableShares() + (order.getAmount()*sellOrBuy));
             order.setStatus(OrderStatusType.SUCCESS);
-
         }
+
         String jsonMessage = mapper.writeValueAsString(order);
         String newQueue = statusQueueBuilder(JMSDestination, order.getClientId());
         jmsTemplate.convertAndSend(newQueue, jsonMessage);
-
-
-
-
-
-        /*if (orderWrapper.getBuyOrder() != null) {
-            Collection<StockMarket> stockMarkets = repository.findAll();
-            stockMarkets.forEach(stockMarket -> {
-                if ("Frankfurt".equals(stockMarket.getName()))
-                    stockMarket.getShares()
-                            .forEach(share -> {
-
-                                share.setAvailableShares(share.getAvailableShares() - orderWrapper.getBuyOrder().getAmount());
-
-                            });
-            });
-
-            orderWrapper.getBuyOrder().setStatusType(OrderStatusType.SUCCESS);
-            String jsonMessage = mapper.writeValueAsString(orderWrapper);
-
-            if(orderWrapper.getBuyOrder().getClientId() == 1){
-                jmsTemplate.convertAndSend(c1QueueFrankfurt, jsonMessage);
-            }
-
-        } else {
-
-        }*/
-
-    }
-
-    @JmsListener(destination = "${jms.stocks.newOrder.Stuttgart}")
-    public void receiveOrderStuttgart(String orderString) throws JsonProcessingException {
-
     }
 
     private String statusQueueBuilder(String queue, int clientId) {
