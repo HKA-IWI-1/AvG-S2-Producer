@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -30,14 +31,16 @@ public class ReceiveService {
 
     @Value("${jms.stocks.c1.orderStatus.Frankfurt}")
     String c1QueueFrankfurt;
+
     @Value("${jms.stocks.c2.orderStatus.Stuttgart}")
     String c2QueueStuttgart;
+
     @Value("${jms.stocks.c2.orderStatus.Frankfurt}")
     String c2QueueFrankfurt;
     //todo: alles beenden
 
     @JmsListener(destination = "${jms.stocks.newOrder.Frankfurt}")
-    public void receiveOrderFrankfurt(String orderString) throws JsonProcessingException {
+    public void receiveOrder(String orderString, @Header("JMSDestination") String JMSDestination) throws JsonProcessingException {
         var orderWrapper = mapper.readValue(orderString, OrderWrapper.class);
         byte sellOrBuy;
 
@@ -48,8 +51,11 @@ public class ReceiveService {
             sellOrBuy = 1;
         Collection<StockMarket> stockMarkets = repository.findAll();
 
+        int index = JMSDestination.lastIndexOf(".") + 1;
+        String market = JMSDestination.substring(index);
+
         List<Share> shareList = stockMarkets.stream()
-                .filter(stockMarket -> stockMarket.getName().equals("Frankfurt"))
+                .filter(stockMarket -> stockMarket.getName().equals(market))
                 .flatMap(stockMarket -> stockMarket.getShares().stream())
                 .filter(share -> share.getWkn().equals(order.getWkn()))
                 .toList();
@@ -64,9 +70,10 @@ public class ReceiveService {
 
         }
         String jsonMessage = mapper.writeValueAsString(order);
-        if (order.getClientId() == 1){
-            jmsTemplate.convertAndSend(c1QueueFrankfurt, jsonMessage);
-        }
+        String newQueue = statusQueueBuilder(JMSDestination, order.getClientId());
+        jmsTemplate.convertAndSend(newQueue, jsonMessage);
+
+
 
 
 
