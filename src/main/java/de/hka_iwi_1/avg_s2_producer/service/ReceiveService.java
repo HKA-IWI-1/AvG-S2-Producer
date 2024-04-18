@@ -39,7 +39,7 @@ public class ReceiveService {
     String c2QueueFrankfurt;
 
     @JmsListener(destination = "${jms.stocks.newOrder.Frankfurt}")
-    @JmsListener(destination = "${jms.stocks.newOrder.Frankfurt}")
+    @JmsListener(destination = "${jms.stocks.newOrder.Stuttgart}")
     public void receiveOrder(String orderString, @Header("JMSDestination") String JMSDestination) throws JsonProcessingException {
         var orderWrapper = mapper.readValue(orderString, OrderWrapper.class);
         byte sellOrBuy;
