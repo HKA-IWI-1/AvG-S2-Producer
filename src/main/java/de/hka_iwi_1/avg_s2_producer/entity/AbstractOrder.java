@@ -34,7 +34,6 @@ public abstract class AbstractOrder {
     // created by client
     protected UUID id;
 
-    @Value("${client.id}")
     protected int clientId;
 
     protected UUID exchangeId;

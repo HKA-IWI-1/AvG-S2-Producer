@@ -6,11 +6,11 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @ToString
-@RequiredArgsConstructor
-public abstract class BuyOrder extends AbstractOrder {
+@AllArgsConstructor
+@NoArgsConstructor
+public class BuyOrder extends AbstractOrder {
 
-    protected BigDecimal maxPrice;
+    private BigDecimal maxPrice;
 
 }

@@ -1,7 +1,7 @@
 
 ---
 server:
-  port: 8080
+  port: 8081
   address: 127.0.0.1 # in production environments use reverse proxy, e.g. apache or nginx
   error:
     whitelabel.enabled: false
