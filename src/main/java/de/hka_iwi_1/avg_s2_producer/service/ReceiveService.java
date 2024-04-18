@@ -45,7 +45,7 @@ public class ReceiveService {
         byte sellOrBuy;
 
         AbstractOrder order = orderWrapper.getBuyOrder() != null ? orderWrapper.getBuyOrder() : orderWrapper.getSellOrder();
-        if(order == orderWrapper.getBuyOrder())
+        if (order == orderWrapper.getBuyOrder())
             sellOrBuy = -1;
         else
             sellOrBuy = 1;
@@ -61,16 +61,16 @@ public class ReceiveService {
                 .toList();
         Share share = shareList.getFirst();
 
-        if(share.getAvailableShares()-order.getAmount() < 0 && orderWrapper.getBuyOrder() != null){
+        if (share.getAvailableShares() - order.getAmount() < 0 && orderWrapper.getBuyOrder() != null) {
             order.setStatus(OrderStatusType.ERROR);
-        }
-        else{
-            share.setAvailableShares(share.getAvailableShares() + (order.getAmount()*sellOrBuy));
+        } else {
+            share.setAvailableShares(share.getAvailableShares() + (order.getAmount() * sellOrBuy));
             order.setStatus(OrderStatusType.SUCCESS);
         }
 
         String jsonMessage = mapper.writeValueAsString(order);
         String newQueue = statusQueueBuilder(JMSDestination, order.getClientId());
+        jmsTemplate.setPubSubDomain(false);
         jmsTemplate.convertAndSend(newQueue, jsonMessage);
     }
 

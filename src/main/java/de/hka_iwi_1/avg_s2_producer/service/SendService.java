@@ -41,6 +41,7 @@ public class SendService {
         String jsonMessage = objectMapper.writeValueAsString(stockMarkets);
 
         // Sende den JSON-String
+        jmsTemplate.setPubSubDomain(false);
         jmsTemplate.convertAndSend(jmsQueue, jsonMessage);
     }
 
@@ -65,6 +66,7 @@ public class SendService {
 
         String jsonMessage = objectMapper.writeValueAsString(stockMarkets);
 
+        jmsTemplate.setPubSubDomain(true);
         jmsTemplate.convertAndSend(jmsQueue, jsonMessage);
         log.info("sentMessage");
     }
