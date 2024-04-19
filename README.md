@@ -15,7 +15,7 @@ Password and username can be set in artemis.env (default: user _artemis_ and pas
 
 The web management console can be opened at http://localhost:8161.
 
-### You will need the following addresses. Each address needs a queue with the same name:
+### You will need the following addresses:
 
 - `stocks.updates` # multicast
 - `stocks.newOrder.Stuttgart` # anycast
