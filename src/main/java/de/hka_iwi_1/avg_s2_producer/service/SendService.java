@@ -17,6 +17,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Service for sending updated order and stock data.
+ */
 @RequiredArgsConstructor
 @Slf4j
 @Service
@@ -28,8 +31,14 @@ public class SendService {
 
 
     @Value("${jms.stocks.updates}")
-    String jmsQueue;
+    private String jmsQueue;
 
+    /**
+     * Method for sending price messages to the message broker.
+     *
+     * @param suchkriterien Search criterias.
+     * @throws JsonProcessingException Exception if Jackson can't convert the string.
+     */
     public void sendPrices(Map<String, List<String>> suchkriterien) throws JsonProcessingException {
         Collection<StockMarket> stockMarkets = repo.find(suchkriterien);
 
@@ -45,6 +54,11 @@ public class SendService {
         jmsTemplate.convertAndSend(jmsQueue, jsonMessage);
     }
 
+    /**
+     * Method for repeatedly sending price update messages to the message broker.
+     *
+     * @throws JsonProcessingException Exception if Jackson can't convert the string.
+     */
     @Scheduled(initialDelay = 500, fixedRate = 500)
     public void scheduledPrices() throws JsonProcessingException {
         Collection<StockMarket> stockMarkets = repo.findAll();

@@ -4,6 +4,9 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
+/**
+ * The buy order.
+ */
 @Getter
 @Setter
 @ToString
@@ -11,6 +14,9 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class BuyOrder extends AbstractOrder {
 
+    /**
+     * The maximum price at which the order should be executed.
+     */
     private BigDecimal maxPrice;
 
 }

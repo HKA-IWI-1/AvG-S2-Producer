@@ -10,6 +10,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * A share that can be bought or sold.
+ */
 @Builder
 @Getter
 @Setter
@@ -17,11 +20,21 @@ import java.util.List;
 @EqualsAndHashCode
 public class Share implements Serializable {
 
-    // Regex: ^\b[A-NP-Z0-9]{6}\b$
+    /**
+     * The WKN (Wertpapierkennnummer) of the share. Acts as the id.
+     * Regex: ^\b[A-NP-Z0-9]{6}\b$
+     */
     private String wkn;
 
+    /**
+     * The amount of available shares.
+     */
     private int availableShares;
 
-    private List<BigDecimal> priceHistory;
+    // todo: handle prices.
 
+    /**
+     * Collection containing a price history. E.g. used for graphs.
+     */
+    private List<BigDecimal> priceHistory;
 }

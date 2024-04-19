@@ -20,6 +20,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Service for handling orders.
+ */
 @RequiredArgsConstructor
 @Slf4j
 @Service
@@ -30,6 +33,13 @@ public class ReceiveService {
     private final StockMarketRepository repository;
     private final JmsTemplate jmsTemplate;
 
+    /**
+     * Method for handling incoming orders.
+     * @param message Order as a JSON string.
+     * @throws JsonProcessingException Exception if Jackson can't convert the string.
+     * @throws JMSException Exception if JMS message can't be sent.
+     * @throws InterruptedException Exception if timeout fails.
+     */
     @JmsListener(destination = "${jms.stocks.newOrder.Frankfurt}")
     @JmsListener(destination = "${jms.stocks.newOrder.Stuttgart}")
     public void receiveOrder(Message message) throws JsonProcessingException, JMSException, InterruptedException {

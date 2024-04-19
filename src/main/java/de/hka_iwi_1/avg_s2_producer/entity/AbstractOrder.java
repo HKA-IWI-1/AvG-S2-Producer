@@ -24,6 +24,9 @@ import org.springframework.beans.factory.annotation.Value;
 
 import java.util.UUID;
 
+/**
+ * Class defining an abstract order.
+ */
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -31,17 +34,34 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public abstract class AbstractOrder {
 
-    // created by client
+    /**
+     * The id of the order.
+     */
     protected UUID id;
 
+    /**
+     * The id of the client. Gets injected from the Spring Boot config file.
+     */
     protected int clientId;
 
+    /**
+     * The id of the exchange.
+     */
     protected UUID exchangeId;
 
-    // Regex: ^\b[A-NP-Z0-9]{6}\b$
+    /**
+     * The WKN (Wertpapierkennnummer) of the share.
+     * Regex: ^\b[A-NP-Z0-9]{6}\b$
+     */
     protected String wkn;
 
+    /**
+     * The amount of shares that are to be bought/sold.
+     */
     protected int amount;
 
+    /**
+     * The status of the order.
+     */
     protected OrderStatusType status;
 }

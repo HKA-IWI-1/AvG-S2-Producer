@@ -17,7 +17,6 @@ import java.util.Map;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 
-
 /**
  * Controller for accepting GET requests to parse the iCal file.
  */
@@ -30,25 +29,19 @@ public class Controller {
     private final SendService sendService;
     private final StockMarketRepository repo;
 
-//    @PostMapping(consumes = APPLICATION_JSON_VALUE)
-//    public String sendPriceMessage(@RequestBody String message) {
-//        try {
-//            sendService.SendPrices(message);
-//            return "Message sent successfully!";
-//        } catch (Exception e) {
-//            return "Error sending message: " + e.getMessage();
-//        }
-//    }
-
     @GetMapping(produces = APPLICATION_JSON_VALUE)
-    List<StockMarket> get(@RequestParam @NonNull final Map<String, List<String>> suchkriterien)
-    {
+    List<StockMarket> get(@RequestParam @NonNull final Map<String, List<String>> suchkriterien) {
         log.debug("get: suchkriterien={}", suchkriterien);
         final var passagiere = repo.find(suchkriterien).stream().toList();
         log.debug("get: {}", passagiere);
         return passagiere;
     }
 
+    /**
+     * Sending price message.
+     * @param suchkriterien Search criterias.
+     * @return The message.
+     */
     @PostMapping
     public String sendPriceMessage(@RequestParam @NonNull final MultiValueMap<String, String> suchkriterien) {
         try {

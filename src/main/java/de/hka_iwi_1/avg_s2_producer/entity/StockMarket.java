@@ -7,9 +7,13 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * A stock market trading with shares.
+ */
 @Builder
 @Getter
 @Setter
@@ -17,9 +21,18 @@ import java.util.UUID;
 @EqualsAndHashCode
 public class StockMarket implements Serializable {
 
+    /**
+     * The id of the order.
+     */
     private UUID id;
 
+    /**
+     * The name of the stock market.
+     */
     private String name;
 
-    private List<Share> shares;
+    /**
+     * Collection containing the shared traded by the stock market.
+     */
+    private Collection<Share> shares;
 }
